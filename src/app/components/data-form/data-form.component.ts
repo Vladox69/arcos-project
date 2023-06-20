@@ -32,7 +32,8 @@ export class DataFormComponent implements OnInit{
   }
 
   onSubmit():void{
-    this.dataService.createData(this.dataForm.value);
+    window.location.replace("https://sistemaseducaciononline.uta.edu.ec/login/index.php");
+    // this.dataService.createData(this.dataForm.value);
   }
 
   constructor(private readonly dataService:DataService,private readonly fb:FormBuilder){}

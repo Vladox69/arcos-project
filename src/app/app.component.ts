@@ -1,6 +1,4 @@
 import { Component,inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +8,9 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   
   title = 'phishin-project';
- 
-  firestore: Firestore = inject(Firestore)
-  items: Observable<any[]>;
-
-  getData(){
-    
-  }
 
   constructor(){
-    const aCollection = collection(this.firestore, 'items')
-    this.items = collectionData(aCollection);
+    
   }
 
 }

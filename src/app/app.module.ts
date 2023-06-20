@@ -14,6 +14,9 @@ import { DatosPageComponent } from './pages/datos-page/datos-page.component';
 import { EstadisticasPageComponent } from './pages/estadisticas-page/estadisticas-page.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { EdadChartComponent } from './components/edad-chart/edad-chart.component';
+import { SemestreChartComponent } from './components/semestre-chart/semestre-chart.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     FooterComponent,
     DatosPageComponent,
-    EstadisticasPageComponent 
+    EstadisticasPageComponent,
+    PieChartComponent,
+    EdadChartComponent,
+    SemestreChartComponent 
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,28 @@
-<p>estadisticas-page works!</p>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <mat-nav-list>
+            <a mat-list-item routerLink="tareas">Tareas</a>
+            <a mat-list-item routerLink="proyectos">Proyectos</a>
+            <a mat-list-item routerLink="hitos">Hitos</a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="container mt-4">
+            <app-pie-chart/>
+            <app-edad-chart/>
+            <app-semestre-chart/>
+        </div>
+        <div id="chart" class="container mt-4">
+            <h3 class="text-center">Estudiantes por facultad</h3>
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [dataLabels]="chartOptions.dataLabels"
+              [plotOptions]="chartOptions.plotOptions"
+              [xaxis]="chartOptions.xaxis"
+            ></apx-chart>
+            <p>Total</p>
+          </div>
+
+    </mat-drawer-content>
+</mat-drawer-container>
