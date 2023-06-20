@@ -7,12 +7,16 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { DataFormComponent } from './components/data-form/data-form.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataFormComponent 
+    DataFormComponent,
+    NavbarComponent,
+    FooterComponent 
   ],
   imports: [
     BrowserModule,
