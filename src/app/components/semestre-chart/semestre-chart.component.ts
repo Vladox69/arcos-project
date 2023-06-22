@@ -12,6 +12,8 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { DataService } from "src/app/services/data.service";
+import { ReporteService } from "src/app/services/reporte.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -32,15 +34,21 @@ export type ChartOptions = {
   styleUrls: ['./semestre-chart.component.css']
 })
 export class SemestreChartComponent {
-  @ViewChild("chart") chart: ChartComponent|undefined;
-  public chartOptions: Partial<ChartOptions>|any;
+  @ViewChild("chart") chart: ChartComponent | undefined;
+  public chartOptions: Partial<ChartOptions> | any;
 
-  constructor() {
+  semestres: any[] = []
+
+  categorias: string[] = [];
+  cantidades: number[] = [];
+
+  crearGrafico(cat: string[] = [], cant: number[] = []): void {
+
     this.chartOptions = {
       series: [
         {
           name: "Cantidad",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 45]
+          data: cant
         }
       ],
       chart: {
@@ -63,17 +71,7 @@ export class SemestreChartComponent {
         colors: ["transparent"]
       },
       xaxis: {
-        categories: [
-          "Primero",
-          "Segundo",
-          "Tercero",
-          "Cuarto",
-          "Quinto",
-          "Sexto",
-          "Septimo",
-          "Octavo",
-          "Noveno",
-        ]
+        categories: cat
       },
       yaxis: {
         title: {
@@ -85,9 +83,41 @@ export class SemestreChartComponent {
       },
       tooltip: {
         y: {
-          
+
         }
       }
     };
   }
+
+  getData(): void {
+    this.dataS.getSemestre().subscribe({
+      next: (v) => {
+        this.semestres = this.reporteS.getCategoriasSemestre(v);
+        this.dataS.getData().subscribe({
+          next: (v) => {
+            const data = this.reporteS.getDataReportSemestre(v);
+            console.log(this.semestres);
+            Object.keys(this.semestres).forEach((sem: any) => {
+              const semCount = !!data[sem] ? data[sem].length : 0;
+              this.categorias = [...this.categorias, this.semestres[sem][0].nombre]
+              this.cantidades = [...this.cantidades, semCount]
+
+            });
+            this.crearGrafico(this.categorias, this.cantidades);
+          }
+        })
+      }
+    })
+
+
+  }
+
+  constructor(private readonly reporteS: ReporteService, private readonly dataS: DataService) {
+    this.crearGrafico();
+  }
+  ngOnInit(): void {
+    this.getData();
+  }
+
+
 }

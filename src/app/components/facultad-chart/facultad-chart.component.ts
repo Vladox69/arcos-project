@@ -35,7 +35,6 @@ export class FacultadChartComponent implements OnInit {
     this.dataS.getCarrera().subscribe({
       next: (v) => {
         this.carreras = this.reporteS.getCategoriasFacultad(v);
-        console.log(this.carreras);
         this.dataS.getData().subscribe({
           next: (v) => {
             const data = this.reporteS.getDataReportFacultad(v);
@@ -55,9 +54,6 @@ export class FacultadChartComponent implements OnInit {
   }
 
   crearGrafico(cat:string[]=[],cant:number[]=[]):void{
-    console.log(cat);
-    console.log(cant);
-    
     this.chartOptions = {
       series: [
         {

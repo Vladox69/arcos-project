@@ -49,5 +49,27 @@ export class ReporteService {
     }, {})
   }
 
+  getDataReportSemestre(data:any[]):any{
+    return data.reduce((acumulador, c) => {
+      const { semestre } = c;
+      if (!acumulador[semestre]) {
+        acumulador[semestre] = [];
+      }
+      acumulador[semestre].push(c);
+      return acumulador;
+    }, {})
+  }
+
+  getCategoriasSemestre(data:any[]):any{
+    return data.reduce((acumulador, c) => {
+      const { id } = c;
+      if (!acumulador[id]) {
+        acumulador[id] = [];
+      }
+      acumulador[id].push(c);
+      return acumulador;
+    }, {})
+  }
+
   constructor() { }
 }
