@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { EdadChartComponent } from './components/edad-chart/edad-chart.component';
 import { SemestreChartComponent } from './components/semestre-chart/semestre-chart.component';
+import { FacultadChartComponent } from './components/facultad-chart/facultad-chart.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SemestreChartComponent } from './components/semestre-chart/semestre-cha
     EstadisticasPageComponent,
     PieChartComponent,
     EdadChartComponent,
-    SemestreChartComponent 
+    SemestreChartComponent,
+    FacultadChartComponent,
   ],
   imports: [
     BrowserModule,

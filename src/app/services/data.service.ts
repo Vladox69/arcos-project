@@ -15,15 +15,22 @@ export class DataService {
     return collectionData(aCollection, { idField: 'id' });
   }
 
+  getCarrera():Observable<any[]>{
+    const aCollection = collection(this.firestore, 'carrera');
+    return collectionData(aCollection, { idField: 'id' });
+  }
+
+  getSemestre():Observable<any[]>{
+    const aCollection = collection(this.firestore, 'semestre');
+    return collectionData(aCollection, { idField: 'id' });
+  }
+
   async createData(data: any): Promise<void> {
     const aCollection = collection(this.firestore, 'data');
     try {
-      await addDoc(aCollection, data).then(e => {
-        console.log(e);
-      });
+      await addDoc(aCollection, data);
     } catch (error) {
       console.log(error);
-
     }
   }
 

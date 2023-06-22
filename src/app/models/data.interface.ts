@@ -3,7 +3,7 @@ export interface Data{
     carrera:number;
     cedula:string;
     celular:string;
-    fechaNacimiento:string;
+    edad:string;
     id:string;
     nombres:string;
     semestre:number;

@@ -1,10 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexChart
 } from "ng-apexcharts";
+import { DataService } from 'src/app/services/data.service';
+import { ReporteService } from 'src/app/services/reporte.service';
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
@@ -17,13 +19,23 @@ export type ChartOptions = {
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.css']
 })
-export class PieChartComponent {
+export class PieChartComponent implements OnInit{
   @ViewChild("chart") chart: ChartComponent | undefined;
   public chartOptions: Partial<ChartOptions> |any;
 
-  constructor() {
+  getData():void{
+    this.dataS.getData().subscribe({
+      next:(v)=> {
+        const {masculino,femenino}= this.reportesS.getDataReportSexo(v);
+        this.crearGraficas(masculino,femenino);
+      },
+    })
+
+  }
+
+  crearGraficas(masculino:number=0,femenino:number=0):void{
     this.chartOptions = {
-      series: [44, 55],
+      series: [masculino, femenino],
       chart: {
         width: 500,
         type: "pie"
@@ -43,5 +55,12 @@ export class PieChartComponent {
         }
       ]
     };
+  }
+
+  constructor(private readonly reportesS:ReporteService,private readonly dataS:DataService) {
+    this.crearGraficas();
+  }
+  ngOnInit(): void {
+   this.getData();
   }
 }

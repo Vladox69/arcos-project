@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -12,6 +12,8 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { DataService } from "src/app/services/data.service";
+import { ReporteService } from "src/app/services/reporte.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -30,16 +32,32 @@ export type ChartOptions = {
   templateUrl: './edad-chart.component.html',
   styleUrls: ['./edad-chart.component.css']
 })
-export class EdadChartComponent {
-  @ViewChild("chart") chart: ChartComponent|undefined;
-  public chartOptions: Partial<ChartOptions>|any;
+export class EdadChartComponent implements OnInit {
+  @ViewChild("chart") chart: ChartComponent | undefined;
+  public chartOptions: Partial<ChartOptions> | any;
 
-  constructor() {
+  categorias:string[]=[];
+  edades:number[]=[];
+
+  getData(): void {
+    this.dataS.getData().subscribe({
+      next: (v) => {
+        const data = this.reporteS.getDataReportEdad(v);
+        Object.keys(data).forEach((edad) => {
+          this.categorias=[...this.categorias,edad]
+          this.edades=[...this.edades,data[edad].length]
+        });
+       this.crearGrafica(this.categorias,this.edades);
+      }
+    })
+  }
+
+  crearGrafica(cat:string[]=[],eda:number[]=[]):void{
     this.chartOptions = {
       series: [
         {
           name: "Cantidad",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41,5]
+          data: eda
         }
       ],
       chart: {
@@ -62,18 +80,7 @@ export class EdadChartComponent {
         colors: ["transparent"]
       },
       xaxis: {
-        categories: [
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26"
-        ]
+        categories: cat
       },
       yaxis: {
         title: {
@@ -85,9 +92,16 @@ export class EdadChartComponent {
       },
       tooltip: {
         y: {
-          
+
         }
       }
     };
+  }
+
+  constructor(private readonly dataS: DataService, private readonly reporteS: ReporteService) {
+    this.crearGrafica();
+  }
+  ngOnInit(): void {
+    this.getData();
   }
 }
