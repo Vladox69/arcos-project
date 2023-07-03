@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { NgApexchartsModule } from "ng-apexcharts";
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { NgApexchartsModule } from "ng-apexcharts";
   exports:[
     MatSidenavModule,
     MatListModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }
