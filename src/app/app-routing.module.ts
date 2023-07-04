@@ -5,7 +5,7 @@ import { EstadisticasPageComponent } from './pages/estadisticas-page/estadistica
 
 const routes: Routes = [
   {path:'reportes',component:EstadisticasPageComponent},
-  {path:'home',component:DatosPageComponent}
+  {path:'',component:DatosPageComponent}
 ];
 
 @NgModule({

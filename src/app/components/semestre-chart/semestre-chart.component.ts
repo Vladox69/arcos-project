@@ -96,7 +96,6 @@ export class SemestreChartComponent {
         this.dataS.getData().subscribe({
           next: (v) => {
             const data = this.reporteS.getDataReportSemestre(v);
-            console.log(this.semestres);
             Object.keys(this.semestres).forEach((sem: any) => {
               const semCount = !!data[sem] ? data[sem].length : 0;
               this.categorias = [...this.categorias, this.semestres[sem][0].nombre]

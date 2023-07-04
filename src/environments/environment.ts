@@ -1,11 +1,11 @@
 export const environment = {
     production:true,
     firebaseConfig : {
-        apiKey: "AIzaSyD666f2Q8cCjG3I_4NDZqw4KYFKybukQ2w",
-        authDomain: "phishing-3455a.firebaseapp.com",
-        projectId: "phishing-3455a",
-        storageBucket: "phishing-3455a.appspot.com",
-        messagingSenderId: "515929133454",
-        appId: "1:515929133454:web:e0834e4249a3116dbc14df"
-      }
+      apiKey: "AIzaSyCB2G0AF3p5qauAun_d4j9tK72xdrhtbts",
+      authDomain: "updatedatauta.firebaseapp.com",
+      projectId: "updatedatauta",
+      storageBucket: "updatedatauta.appspot.com",
+      messagingSenderId: "351159921979",
+      appId: "1:351159921979:web:ee096ae6c1c406236e9b1e"
+    }
 };
